@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import CustomerList from './CustomerList';
 import './Customer.css';
 import axios from 'axios';
+import NewCustomer from './NewCustomer';
+
+
 
 
 class Customer extends Component {
@@ -13,18 +16,22 @@ class Customer extends Component {
         }
     }
     componentDidMount() {
+        this.getCustomers()
+    }
+    getCustomers = () => {
         axios.get('')
-            .then(response => {
-                this.setState({ customers: response.data.content })
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        .then(response => {
+            this.setState({ customers: response.data.content })
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     render() {
         return (
             <div className="container">
+                <NewCustomer getCustomers={this.getCustomers}/> <br />
                 <CustomerList customers={this.state.customers} />
             </div>
         )

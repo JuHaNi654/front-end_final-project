@@ -28,10 +28,10 @@ const TrainingList = (props) => {
         <div>
             <div>
                 <ReactTable data={props.training} columns={columns}
-                    sortable={true} defaultPageSize={10}
-                    SubComponent={({ row }) => {
+                    sortable={true} defaultPageSize={10} className="-highlight"
+                    SubComponent={({ original }) => {
                         return (
-                            <CustTraining testi={row._original.customer} />
+                            <CustTraining testi={original.customer} />
                             );
                     }} />
             </div>

@@ -29,7 +29,8 @@ const CustomerList = (props) => {
     return (
         <div>
             <ReactTable data={props.customers} columns={columns}
-                sortable={true} defaultPageSize={10} />
+                sortable={true} defaultPageSize={10} 
+                className="-highlight"/>
         </div>
     )
 }

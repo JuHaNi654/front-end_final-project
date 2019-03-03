@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import './Training.css';
 
 
 const CustTraining = (props) => {
@@ -10,18 +11,18 @@ const CustTraining = (props) => {
         columns: [
             {
                 Header: 'Firstname',
-                accessor: 'firstname'
+                accessor: 'firstname',
             },
             {
                 Header: 'Lastname',
-                accessor: 'lastname'
+                accessor: 'lastname',
             }
         ]
     }]
     return (
-        <div className="container">
+        <div className="container CustTraining_styles">
             <ReactTable data={testi} columns={columns}
-                sortable={true} minRows={3}
+                sortable={true} minRows={3} 
                 showPaginationBottom={false}/>
         </div>
     )

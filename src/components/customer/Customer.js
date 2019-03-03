@@ -3,6 +3,7 @@ import CustomerList from './CustomerList';
 import './Customer.css';
 import axios from 'axios';
 import NewCustomer from './NewCustomer';
+import DeleteCustomer from './DeleteCustomer';
 
 
 
@@ -12,27 +13,44 @@ class Customer extends Component {
         super(props)
         this.state = {
             customers: [],
-            name: ''
+            selectedCustomers: [],
+            name: '',
+            deleteAlert: false,
         }
     }
+
+
     componentDidMount() {
         this.getCustomers()
     }
+
+    setSelectedCustomers = (value) => {
+        this.setState({ selectedCustomers: value })
+    }
     getCustomers = () => {
+        let listCustomers = []
+        let idCounter = 0
         axios.get('')
-        .then(response => {
-            this.setState({ customers: response.data.content })
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .then(response => {
+                listCustomers = response.data.content.map(customer => {
+                    idCounter += 1
+                    return { ...customer, id: idCounter }
+                })
+                this.setState({ customers: listCustomers })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     render() {
         return (
             <div className="container">
-                <NewCustomer getCustomers={this.getCustomers}/> <br />
-                <CustomerList customers={this.state.customers} />
+                <div className="btn-group" role="group">
+                    <NewCustomer getCustomers={this.getCustomers} />
+                    <DeleteCustomer />
+                </div> <br />
+                <CustomerList selectCustomers={this.setSelectedCustomers} customers={this.state.customers} />
             </div>
         )
     }

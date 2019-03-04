@@ -11,6 +11,9 @@
 # production
 /build
 
+# hide server api calls
+/src/components/ServerCalls.js
+
 # misc
 .DS_Store
 .env.local

@@ -33,7 +33,7 @@ class NewCustomer extends React.Component {
     render() {
         return (
             <div>
-                <button className="btn btn-primary" onClick={this.openModal}> + Add new customer</button>
+                <button className="btn newCustomer-button" onClick={this.openModal}> + Add new customer</button>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onRequestClose={this.closeModal}

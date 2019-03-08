@@ -1,5 +1,9 @@
 .container {
     margin-top: 2.5%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px lime, 0 0 40px lime;
 }
 
 .close_button {
@@ -11,4 +15,42 @@
 
 .Modal_style h2 {
     text-align: center;
+}
+
+.customer-action-container {
+    position: relative;
+    overflow: hidden;
+    clear: both;
+    margin-bottom: 1%;
+}
+
+.newCustomer-button {
+    float: right;
+    background-color: #1b1b1b;
+    color: 	white;
+    font-family: 'Lilita One', cursive;
+}
+
+.newCustomer-button:hover {
+    color: blue;
+    text-shadow: 0 0 20px #fff, 0 0 30px blue, 0 0 40px blue, 0 0 50px blue;
+}
+
+.deleteBtn_style {
+    background-color: black;
+    font-family: 'Lilita One', cursive;
+    color: white;
+}
+.deleteBtn_style:hover {
+    color: red;
+    text-shadow: 0 0 20px #fff, 0 0 30px red, 0 0 40px red, 0 0 50px red;
+}
+
+@keyframes buttonGlow {
+    from {
+
+    }
+    to {
+        text-shadow: 0 0 20px #fff, 0 0 30px blue, 0 0 40px blue, 0 0 50px blue;
+    }
 }

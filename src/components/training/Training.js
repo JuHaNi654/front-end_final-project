@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TrainingList from './TrainingList';
-import axios from 'axios';
+import { getTraining } from '../ServerCalls.js'
 
 
 class Training extends Component {
@@ -12,7 +12,7 @@ class Training extends Component {
     }
 
     componentDidMount() {
-        axios.get('')
+        getTraining()
             .then(response => {
                 this.setState({
                     trainingList: response.data

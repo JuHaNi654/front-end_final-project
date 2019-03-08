@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css'
+import DeleteCustomer from './DeleteCustomer';
 
 class CustomerList extends React.Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class CustomerList extends React.Component {
         let newSelect = {}
         if (this.state.selectAll === 0) {
             this.props.customers.forEach(customer => {
-                newSelect[customer.firstname] = true
+                newSelect[customer.id] = true
             })
         }
         this.props.selectCustomers(newSelect)
@@ -39,45 +40,33 @@ class CustomerList extends React.Component {
         const columns = [{
             Header: 'Customers',
             columns: [{
-                    Header: checkAll => {
-                        return (
-                            <input type="checkbox" checked={this.state.selectAll === 1}
-                            ref={input => {
-                                if (input) {
-                                    input.indeterminate = this.state.selectAll === 2
-                                }
-                            }}
-                            onChange={this.toggleAll} />
-                        )
-                    },
-                    Cell: ({ original }) => {
-                        return (
-                            <input type="checkbox" checked={this.state.selected[original.id] === true}
-                            onChange={() => this.toggleRow(original.id)} />
-                        )
-                    }
-                },  {
-                    Header: 'Firstname',
-                    accessor: 'firstname'
-                }, {
-                    Header: 'Lastname',
-                    accessor: 'lastname'
-                }, {
-                    Header: 'Streetaddress',
-                    accessor: 'streetaddress'
-                }, {
-                    Header: 'Postcode',
-                    accessor: 'postcode'
-                }, {
-                    Header: 'City',
-                    accessor: 'city'
-                }, {
-                    Header: 'Email',
-                    accessor: 'email'
-                }, {
-                    Header: 'Phone',
-                    accessor: 'phone'
+                Header: 'Firstname',
+                accessor: 'firstname'
+            }, {
+                Header: 'Lastname',
+                accessor: 'lastname'
+            }, {
+                Header: 'Streetaddress',
+                accessor: 'streetaddress'
+            }, {
+                Header: 'Postcode',
+                accessor: 'postcode'
+            }, {
+                Header: 'City',
+                accessor: 'city'
+            }, {
+                Header: 'Email',
+                accessor: 'email'
+            }, {
+                Header: 'Phone',
+                accessor: 'phone'
+            }, {
+                Cell: ({ original }) => {
+                    return (
+                        <DeleteCustomer customerId={original.id} deleteFromList={this.props.deleteFromList} />
+                    )
                 }
+            }
             ]
         }]
 

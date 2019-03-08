@@ -1,5 +1,6 @@
 import React from 'react';
-import axios from 'axios';
+import { saveCustomer } from '../ServerCalls.js'
+
 
 class CustomerForm extends React.Component {
     constructor(props) {
@@ -22,13 +23,14 @@ class CustomerForm extends React.Component {
     }
     handleChecked = () => {
         this.setState((prevState) => {
-            return {checked: !prevState.checked}
+            return { checked: !prevState.checked }
         })
     }
     handeSubmit = (event) => {
         event.preventDefault()
 
         const newCustomer = {
+            id: 9,
             firstname: this.state.firstname,
             lastname: this.state.lastname,
             streetaddress: this.state.street,
@@ -38,14 +40,14 @@ class CustomerForm extends React.Component {
             phone: this.state.phone
         }
 
-        if(this.state.checked === true) {
-            axios.post('', newCustomer)
-            .then(response => {
-                this.props.getCustomers();
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        if (this.state.checked === true) {
+            saveCustomer(newCustomer)
+                .then(response => {
+                    this.props.getCustomers();
+                })
+                .catch(err => {
+                    console.log(err)
+                })
         }
 
     }
@@ -99,8 +101,8 @@ class CustomerForm extends React.Component {
                     </div>
                     <input type="submit" className="btn btn-primary" value="Create new customer" />
                     <div className="form-check">
-                        <input type="checkbox" className="form-check-input" id="informationCheck" 
-                        value={this.state.checked} onChange={this.handleChecked}/>
+                        <input type="checkbox" className="form-check-input" id="informationCheck"
+                            value={this.state.checked} onChange={this.handleChecked} />
                         <label className="form-check-label" htmlFor="informationCheck">I have checked given information</label>
                     </div>
 

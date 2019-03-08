@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import CustomerList from './CustomerList';
 import './Customer.css';
-import axios from 'axios';
 import NewCustomer from './NewCustomer';
-import DeleteCustomer from './DeleteCustomer';
+
+
+import {getCustomers} from '../ServerCalls.js'
 
 
 
@@ -30,12 +31,13 @@ class Customer extends Component {
     getCustomers = () => {
         let listCustomers = []
         let idCounter = 0
-        axios.get('')
+        getCustomers()
             .then(response => {
                 listCustomers = response.data.content.map(customer => {
                     idCounter += 1
                     return { ...customer, id: idCounter }
                 })
+                console.log(listCustomers)
                 this.setState({ customers: listCustomers })
             })
             .catch(err => {
@@ -43,14 +45,23 @@ class Customer extends Component {
             })
     }
 
+    deleteFromList = (value) => {
+        const newList = this.state.customers.filter((customer) => customer.id !== value)
+        this.setState({
+            customers: newList
+        })
+    }
+
     render() {
         return (
             <div className="container">
-                <div className="btn-group" role="group">
+                <div className=" customer-action-container">
                     <NewCustomer getCustomers={this.getCustomers} />
-                    <DeleteCustomer />
-                </div> <br />
-                <CustomerList selectCustomers={this.setSelectedCustomers} customers={this.state.customers} />
+                </div>
+                <CustomerList 
+                    selectCustomers={this.setSelectedCustomers} 
+                    customers={this.state.customers} 
+                    deleteFromList={this.deleteFromList}/>
             </div>
         )
     }

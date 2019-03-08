@@ -5,6 +5,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import { deleteCustomer } from '../ServerCalls.js'
+
 class DeleteCustomer extends React.Component {
     constructor(props) {
         super(props)
@@ -15,17 +17,26 @@ class DeleteCustomer extends React.Component {
 
     alertConfirm = () => {
         this.setState(prevState => {
-            return {confirm: !prevState.confirm}
+            return { confirm: !prevState.confirm }
         })
     }
 
     deleteCustomer = () => {
-        this.alertConfirm()
+        let id = this.props.customerId
+        deleteCustomer(id)
+            .then(response => {
+                this.props.deleteFromList(id)
+                this.alertConfirm()
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
     }
     render() {
-        return(
+        return (
             <div>
-                <button onClick={this.alertConfirm}className="btn btn-danger">Delete selected customers</button>
+                <button onClick={this.alertConfirm} className="btn deleteBtn_style">Delete</button>
                 <Dialog
                     open={this.state.confirm}
                     onClose={this.alertConfirm}
@@ -35,7 +46,7 @@ class DeleteCustomer extends React.Component {
                     <DialogTitle id="alert-dialog-title" >Warning</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            By confirming this alert you are deleting selected customers from database!
+                            By confirming this alert you are deleting selected customer from database!
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
@@ -45,7 +56,7 @@ class DeleteCustomer extends React.Component {
                         <button onClick={this.alertConfirm}>
                             Cancel
                         </button>
-                    </DialogActions>   
+                    </DialogActions>
                 </Dialog>
             </div>
         )

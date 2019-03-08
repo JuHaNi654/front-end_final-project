@@ -1,38 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Lilita+One|Monoton');
+
 .App {
   text-align: center;
-  margin-top: calc(5px + 2vmin);
-  margin-left: calc(20px + 3vmin);
-  margin-right: calc(20px + 3vmin);
-  background-color: white;
   padding-bottom: 100px;
+  border-radius: 5px;
+  background-color:black ;
+}
+
+
+.header_text {
+  font-size: 60px;
+  color: #fff;
+  animation: glow 2s ease-in-out infinite alternate;
+  font-family: 'Monoton', cursive;
 }
 
 .App-header {
-  background-color: lightblue;
+  background-color: black;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(20px + 2vmin);
-  color: black;
-  font-weight: bold;
-}
-
-.nav {
-  background-color: whitesmoke;
-}
-
-.nav-item:hover {
-  background-color: lightblue;
-}
-.nav-link:hover {
-  color:black;
-}
-.nav-link {
-  color:black;
-  font-size: 25px;
-  font-weight: bold;
   font-family: "Times New Roman", Times, monospace;
+}
+.nav_style {
+  background-color: #1b1b1b;
+}
+
+
+.nav-link:hover {
+  color: #FF1177;
+  animation: none;
+}
+
+.nav-link {
+  color: #fff;
+  font-family: 'Monoton', cursive;
+  font-size: 30px;
+  animation: neon 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px lime, 0 0 40px lime, 0 0 50px lime, 0 0 60px lime, 0 0 70px lime;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #00CC99, 0 0 40px #00CC99, 0 0 50px #00CC99, 0 0 60px #00CC99, 0 0 70px #00CC99, 0 0 80px #00CC99;
+  }
+}
+
+
+@keyframes neon {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+  }
 }
 

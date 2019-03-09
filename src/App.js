@@ -17,7 +17,6 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <nav className="navbar navbar-expand-lg nav_style">
-
               <ul className="navbar-nav">
                 <li className="nav-item">
                   <Link className="nav-link" to="/">Home</Link>

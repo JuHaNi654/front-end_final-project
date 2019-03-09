@@ -8,13 +8,25 @@
 
 .close_button {
     position: absolute;
-    top: 8px;
-    right: 16px;
+    top: 24px;
+    right: 24px;
     font-weight: bolder;
+    background-color: black;
+    color: white;
+}
+.close_button:hover {
+    color: red;
+    text-shadow: 0 0 20px #fff, 0 0 30px red, 0 0 40px red, 0 0 50px red;
 }
 
 .Modal_style h2 {
     text-align: center;
+}
+.Modal_style {
+    height: 100%;
+    font-family: 'Lilita One', cursive;
+    padding: 30px;
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px blue, 0 0 40px blue;
 }
 
 .customer-action-container {
@@ -46,11 +58,41 @@
     text-shadow: 0 0 20px #fff, 0 0 30px red, 0 0 40px red, 0 0 50px red;
 }
 
-@keyframes buttonGlow {
-    from {
+.ReactTable {
+    font-family: 'Lilita One', cursive;
+}
+.create_Customer_Button {
+    background-color: black;
+    color: white;
+}
 
-    }
-    to {
-        text-shadow: 0 0 20px #fff, 0 0 30px blue, 0 0 40px blue, 0 0 50px blue;
-    }
+.create_Customer_Button:hover {
+    color: greenyellow;
+    text-shadow: 0 0 20px #fff, 0 0 30px greenyellow, 0 0 40px greenyellow, 0 0 50px greenyellow;
+}
+
+.dialog_style {
+    font-family: 'Lilita One', cursive;
+}
+
+.button_confirm {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+.button_confirm:hover {
+    color: greenyellow;
+    text-shadow: 0 0 20px #fff, 0 0 30px greenyellow, 0 0 40px greenyellow, 0 0 50px greenyellow;
+}
+
+.button_cancel {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+.button_cancel:hover {
+    color: red;
+    text-shadow: 0 0 20px #fff, 0 0 30px red, 0 0 40px red, 0 0 50px red;
 }

@@ -12,18 +12,12 @@ class CustomerForm extends React.Component {
             phone: '',
             street: '',
             city: '',
-            postcode: '',
-            checked: false
+            postcode: ''
         }
     }
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
-        })
-    }
-    handleChecked = () => {
-        this.setState((prevState) => {
-            return { checked: !prevState.checked }
         })
     }
     handeSubmit = (event) => {
@@ -40,15 +34,14 @@ class CustomerForm extends React.Component {
             phone: this.state.phone
         }
 
-        if (this.state.checked === true) {
             saveCustomer(newCustomer)
                 .then(response => {
-                    this.props.getCustomers();
+                    this.props.getCustomers()
+                    this.props.closeModal()
                 })
                 .catch(err => {
                     console.log(err)
                 })
-        }
 
     }
     render() {
@@ -99,13 +92,7 @@ class CustomerForm extends React.Component {
                         </div>
 
                     </div>
-                    <input type="submit" className="btn btn-primary" value="Create new customer" />
-                    <div className="form-check">
-                        <input type="checkbox" className="form-check-input" id="informationCheck"
-                            value={this.state.checked} onChange={this.handleChecked} />
-                        <label className="form-check-label" htmlFor="informationCheck">I have checked given information</label>
-                    </div>
-
+                    <input type="submit" className="btn create_Customer_Button" value="Create new customer" />
                 </form>
             </div>
         )

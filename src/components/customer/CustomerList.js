@@ -4,38 +4,6 @@ import 'react-table/react-table.css'
 import DeleteCustomer from './DeleteCustomer';
 
 class CustomerList extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            selected: [],
-            selectAll: 0
-        }
-    }
-
-    toggleRow = (value) => {
-        let newSelect = Object.assign({}, this.state.selected)
-        newSelect[value] = !this.state.selected[value]
-        this.props.selectCustomers(newSelect)
-        this.setState({
-            selected: newSelect,
-            selectAll: 2
-        })
-    }
-
-    toggleAll = () => {
-        let newSelect = {}
-        if (this.state.selectAll === 0) {
-            this.props.customers.forEach(customer => {
-                newSelect[customer.id] = true
-            })
-        }
-        this.props.selectCustomers(newSelect)
-        this.setState({
-            selected: newSelect,
-            selectAll: this.state.selectAll === 0 ? 1 : 0
-        })
-    }
-
     render() {
         const columns = [{
             Header: 'Customers',
@@ -59,17 +27,15 @@ class CustomerList extends React.Component {
                 accessor: 'email'
             }, {
                 Header: 'Phone',
-                accessor: 'phone'
+                accessor: 'phone',
             }, {
                 Cell: ({ original }) => {
                     return (
-                        <DeleteCustomer customerId={original.id} deleteFromList={this.props.deleteFromList} />
+                        <DeleteCustomer deleteCustomerLink={original.links[0].href} getCustomers={this.props.getCustomers} />
                     )
                 }
-            }
-            ]
+            }]
         }]
-
 
 
         return (

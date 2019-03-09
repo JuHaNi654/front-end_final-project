@@ -37,12 +37,12 @@ class NewCustomer extends React.Component {
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onRequestClose={this.closeModal}
-                    style={customStyles}
-                    contentLabel="Examble Modal" >
-                    <button className="btn btn-danger close_button" onClick={this.closeModal}>X</button>
+                    style={customStyles} >
+
                     <div className="Modal_style">
+                        <button className="btn close_button" onClick={this.closeModal}>X</button>
                         <h2>Add new customer</h2>
-                        <CustomerForm getCustomers={this.props.getCustomers} />
+                        <CustomerForm getCustomers={this.props.getCustomers} closeModal={this.closeModal} />
                     </div>
                 </Modal>
             </div>

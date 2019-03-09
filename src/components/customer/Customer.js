@@ -29,16 +29,11 @@ class Customer extends Component {
         this.setState({ selectedCustomers: value })
     }
     getCustomers = () => {
-        let listCustomers = []
-        let idCounter = 0
         getCustomers()
             .then(response => {
-                listCustomers = response.data.content.map(customer => {
-                    idCounter += 1
-                    return { ...customer, id: idCounter }
+                this.setState({
+                    customers: response.data.content
                 })
-                console.log(listCustomers)
-                this.setState({ customers: listCustomers })
             })
             .catch(err => {
                 console.log(err)
@@ -54,14 +49,14 @@ class Customer extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container box">
                 <div className=" customer-action-container">
                     <NewCustomer getCustomers={this.getCustomers} />
                 </div>
                 <CustomerList 
                     selectCustomers={this.setSelectedCustomers} 
                     customers={this.state.customers} 
-                    deleteFromList={this.deleteFromList}/>
+                    getCustomers={this.getCustomers}/>
             </div>
         )
     }

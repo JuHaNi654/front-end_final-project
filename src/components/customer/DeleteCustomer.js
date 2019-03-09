@@ -22,10 +22,9 @@ class DeleteCustomer extends React.Component {
     }
 
     deleteCustomer = () => {
-        let id = this.props.customerId
-        deleteCustomer(id)
+        deleteCustomer(this.props.deleteCustomerLink)
             .then(response => {
-                this.props.deleteFromList(id)
+                this.props.getCustomers()
                 this.alertConfirm()
             })
             .catch(err => {
@@ -42,18 +41,19 @@ class DeleteCustomer extends React.Component {
                     onClose={this.alertConfirm}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description">
-
-                    <DialogTitle id="alert-dialog-title" >Warning</DialogTitle>
+                    <DialogTitle id="alert-dialog-title" ><span className="dialog_style">Warning</span></DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            By confirming this alert you are deleting selected customer from database!
+                            <span className="dialog_style">
+                                By confirming this alert you are deleting selected customer from database!
+                            </span>
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <button onClick={this.deleteCustomer}>
+                        <button className="btn button_confirm" onClick={this.deleteCustomer}>
                             Confirm
                         </button>
-                        <button onClick={this.alertConfirm}>
+                        <button className="btn button_cancel" onClick={this.alertConfirm}>
                             Cancel
                         </button>
                     </DialogActions>

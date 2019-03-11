@@ -1,12 +1,4 @@
-.CustTraining_styles {
-    width: 40%;
-    margin-bottom: 3%;
-}
-
-.table_row_style {
-    background-color: aquamarine;
-}
-.training_container {
+.main_container {
     margin-top: 2.5%;
     background-color: white;
     padding: 10px;

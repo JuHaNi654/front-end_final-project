@@ -6,7 +6,6 @@ import Main from './components/main/Main';
 import Customer from './components/customer/Customer';
 import Training from './components/training/Training';
 
-
 class App extends Component {
   render() {
     return (

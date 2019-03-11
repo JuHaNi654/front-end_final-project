@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import TrainingList from './TrainingList';
 import { getTraining } from '../ServerCalls.js'
 
-
 class Training extends Component {
     constructor(props) {
         super(props)
@@ -24,7 +23,7 @@ class Training extends Component {
     }
     render() {
         return(
-            <div className="container">
+            <div className="container training_container">
                 <TrainingList training={this.state.trainingList}/>
             </div>
         )

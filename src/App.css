@@ -28,6 +28,7 @@
   background-color: #1b1b1b;
   border: 2px solid #FF1177;
   box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #FF1177, 0 0 50px #FF1177;
+  margin: 0.5%;
 }
 
 .nav-link:hover {

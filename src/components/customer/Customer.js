@@ -13,11 +13,12 @@ class Customer extends Component {
         }
     }
 
-
+    //Call functions
     componentDidMount() {
         this.getCustomers()
     }
 
+    //Call api call from rest-service to getcustomers
     getCustomers = () => {
         getCustomers()
             .then(response => {
@@ -29,7 +30,7 @@ class Customer extends Component {
                 console.log(err)
             })
     }
-    
+
     /* 
     deleteFromList = (value) => {
         const newList = this.state.customers.filter((customer) => customer.id !== value)
@@ -41,12 +42,17 @@ class Customer extends Component {
 
     render() {
         return (
-            <div className="container customer_container">
-                <div className=" customer-action-container">
-                    <NewCustomer getCustomers={this.getCustomers} />
-                    <CustomerList
-                        customers={this.state.customers}
-                        getCustomers={this.getCustomers} />
+            <div className="testi">
+                <div className="container customer_container">
+                    <div className="customer_action_container">
+                        <NewCustomer getCustomers={this.getCustomers} />
+                        <CustomerList
+                            customers={this.state.customers}
+                            getCustomers={this.getCustomers} />
+                    </div>
+                </div>
+                <div className="new_customer_alert_container">
+
                 </div>
             </div>
         )

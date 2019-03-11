@@ -24,10 +24,49 @@ class CustomerList extends React.Component {
         }, () => this.filterCustomers())
     }
 
-   
-    filterCustomers = (customers) => {
-        return customers
+
+    filterCustomers = () => {
+        let newFilter = this.props.customers
+        if (this.state.firstname.length !== 0) {
+            newFilter = newFilter.filter(customer => {
+                return customer.firstname.toLowerCase().includes(this.state.firstname.toLowerCase()) 
+            })
+        }
+        if (this.state.lastname.length !== 0) {
+            newFilter = newFilter.filter(customer => {
+                return customer.lastname.toLowerCase().includes(this.state.lastname.toLowerCase()) 
+            })
+        }
+        if (this.state.email.length !== 0) {
+            newFilter = newFilter.filter(customer => {
+                return customer.email.toLowerCase().includes(this.state.email.toLowerCase()) 
+            })
+        }
+        if (this.state.phone.length !== 0) {
+            newFilter = newFilter.filter(customer => {
+                return customer.phone.includes(this.state.phone) 
+            })
+        }
+        if (this.state.street.length !== 0) {
+            newFilter = newFilter.filter(customer => {
+                return customer.street.toLowerCase().includes(this.state.street.toLowerCase()) 
+            })
+        }
+        if (this.state.city.length !== 0) {
+            newFilter = newFilter.filter(customer => {
+                return customer.city.toLowerCase().includes(this.state.city.toLowerCase()) 
+            })
+        }
+        if (this.state.postcode.length !== 0) {
+            newFilter = newFilter.filter(customer => {
+                return customer.postcode.toLowerCase().includes(this.state.postcode.toLowerCase()) 
+            })
+        }
+ 
+        return newFilter
     }
+
+
     chanceInput = () => {
         this.setState(prevState => {
             return { showInput: !prevState.showInput }
@@ -47,16 +86,6 @@ class CustomerList extends React.Component {
     }
 
 
-
-    renderTable = (value, columns) => {
-        return (
-            <div>
-                <ReactTable data={this.filterCustomers(value)} columns={columns}
-                    sortable={true} defaultPageSize={10}
-                    className="-highlight" />
-            </div>
-        )
-    }
     render() {
         const columns = [{
             Header: 'Customers',
@@ -142,11 +171,13 @@ class CustomerList extends React.Component {
                                     </div>
                                 </div>
                             </form>
-                            <button onClick={this.clearInput} className="btn">Clear</button>
+                            <button onClick={this.clearInput} className="btn clear_button">Empty filters</button>
                         </div>
                     </div>
                 </div>
-                {this.renderTable(this.props.customers, columns)}
+                <ReactTable data={this.filterCustomers()} columns={columns}
+                    sortable={true} defaultPageSize={10}
+                    className="-highlight" />
             </div>
         )
     }

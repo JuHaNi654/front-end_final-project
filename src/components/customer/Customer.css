@@ -29,7 +29,7 @@
     box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px blue, 0 0 40px blue;
 }
 
-.customer-action-container {
+.customer_action_container {
     position: relative;
     overflow: hidden;
     clear: both;
@@ -42,15 +42,19 @@
     font-family: 'Lilita One', cursive;
     width: 80%;
 }
+.search_button:hover {
+    color: blue;
+    text-shadow: 0 0 20px #fff, 0 0 30px blue, 0 0 40px blue, 0 0 50px blue;
+}
 
-.newCustomer-button {
+.newCustomer_button {
     float: right;
     background-color: #1b1b1b;
     color: 	white;
     font-family: 'Lilita One', cursive;
 }
 
-.newCustomer-button:hover {
+.newCustomer_button:hover {
     color: blue;
     text-shadow: 0 0 20px #fff, 0 0 30px blue, 0 0 40px blue, 0 0 50px blue;
 }
@@ -67,6 +71,7 @@
 
 .ReactTable {
     font-family: 'Lilita One', cursive;
+    margin-top: 0.5%;
 }
 .create_Customer_Button {
     background-color: black;
@@ -105,6 +110,28 @@
 }
 
 .search_container {
+    font-family: 'Lilita One', cursive;
     margin-top: 1.5%;
     border-radius: 10px;
+    margin-bottom: 0.5%;
 }
+.clear_button {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+.clear_button:hover {
+    color: yellow;
+    text-shadow: 0 0 20px #fff, 0 0 30px greenyellow, 0 0 40px greenyellow, 0 0 50px greenyellow;
+}
+
+.new_customer_alert_container {
+
+    height: 200px;
+    width: 200px;
+    position: relative;
+    left: 75px;
+    top: -600px;
+}
+

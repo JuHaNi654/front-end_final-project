@@ -15,16 +15,18 @@ class CustomerForm extends React.Component {
             postcode: ''
         }
     }
+    //Set states given input data
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
+
+    //On submit sen new data object to the server and closes new customer window 
     handeSubmit = (event) => {
         event.preventDefault()
 
         const newCustomer = {
-            id: 9,
             firstname: this.state.firstname,
             lastname: this.state.lastname,
             streetaddress: this.state.street,

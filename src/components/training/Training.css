@@ -3,13 +3,82 @@
     margin-bottom: 3%;
 }
 
-.table_row_style {
-    background-color: aquamarine;
-}
 .training_container {
     margin-top: 2.5%;
     background-color: white;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px lime, 0 0 40px lime;
+
+}
+.training_action_container {
+    position: relative;
+    overflow: hidden;
+    clear: both;
+    margin-bottom: 1%;
+}
+
+.newTraining_button {
+    background-color: #1b1b1b;
+    color: 	white;
+    font-family: 'Lilita One', cursive;
+}
+
+.newTraining_button:hover {
+    color: blue;
+    text-shadow: 0 0 20px #fff, 0 0 30px blue, 0 0 40px blue, 0 0 50px blue;
+}
+
+.create_training_button {
+    margin-top: 20px;
+    background-color: black;
+    color: white;
+}
+
+.create_training_button:hover {
+    color: greenyellow;
+    text-shadow: 0 0 20px #fff, 0 0 30px greenyellow, 0 0 40px greenyellow, 0 0 50px greenyellow;
+}
+.close_button {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-weight: bolder;
+    background-color: black;
+    color: white;
+}
+.close_button:hover {
+    color: red;
+    text-shadow: 0 0 20px #fff, 0 0 30px red, 0 0 40px red, 0 0 50px red;
+}
+
+.deleteBtn_style {
+    background-color: black;
+    font-family: 'Lilita One', cursive;
+    color: white;
+}
+.deleteBtn_style:hover {
+    color: red;
+    text-shadow: 0 0 20px #fff, 0 0 30px red, 0 0 40px red, 0 0 50px red;
+}
+.button_confirm {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+.button_confirm:hover {
+    color: greenyellow;
+    text-shadow: 0 0 20px #fff, 0 0 30px greenyellow, 0 0 40px greenyellow, 0 0 50px greenyellow;
+}
+
+.button_cancel {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+.button_cancel:hover {
+    color: red;
+    text-shadow: 0 0 20px #fff, 0 0 30px red, 0 0 40px red, 0 0 50px red;
 }

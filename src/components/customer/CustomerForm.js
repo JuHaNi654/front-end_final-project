@@ -36,14 +36,14 @@ class CustomerForm extends React.Component {
             phone: this.state.phone
         }
 
-            saveCustomer(newCustomer)
-                .then(response => {
-                    this.props.getCustomers()
-                    this.props.closeModal()
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+        saveCustomer(newCustomer)
+            .then(response => {
+                this.props.getCustomers()
+                this.props.setModal()
+            })
+            .catch(err => {
+                console.log(err)
+            })
 
     }
     render() {

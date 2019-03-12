@@ -2,6 +2,7 @@ import React from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import CustTraining from './CustTraining';
+import DeleteTraining from './DeleteTraining';
 var moment = require('moment');
 
 const TrainingList = (props) => {
@@ -20,6 +21,13 @@ const TrainingList = (props) => {
             {
                 Header: 'Activity',
                 accessor: 'activity'
+            },
+            {
+                Cell: ({ original }) => {
+                    return (
+                        <DeleteTraining trainingId={original.id} getTraining={props.getTraining}/>
+                    )
+                }
             }
         ]
     }]
@@ -31,8 +39,8 @@ const TrainingList = (props) => {
                     sortable={true} defaultPageSize={10} className="-highlight"
                     SubComponent={({ original }) => {
                         return (
-                            <CustTraining testi={original.customer} />
-                            );
+                            <CustTraining enrolledCustomers={original.customer} />
+                        );
                     }} />
             </div>
         </div>

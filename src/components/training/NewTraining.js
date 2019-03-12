@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react'
 import Modal from 'react-modal'
-import CustomerForm from './CustomerForm';
+import TrainingForm from './TrainingForm';
 
 const customStyles = {
     content: {
@@ -15,8 +15,7 @@ const customStyles = {
     }
 };
 
-
-class NewCustomer extends React.Component {
+export class NewTraining extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -25,13 +24,14 @@ class NewCustomer extends React.Component {
     }
     setModal = () => {
         this.setState(prevState => {
-            return {modalIsOpen: !prevState.modalIsOpen}
+            return { modalIsOpen: !prevState.modalIsOpen }
         })
     }
+
     render() {
         return (
             <div>
-                <button className="btn newCustomer_button" onClick={this.setModal}> + Add new customer</button>
+                <button onClick={this.setModal} className="btn newTraining_button">Create new training activity</button>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onRequestClose={this.closeModal}
@@ -39,8 +39,8 @@ class NewCustomer extends React.Component {
 
                     <div className="Modal_style">
                         <button className="btn close_button" onClick={this.setModal}>X</button>
-                        <h2>Add new customer</h2>
-                        <CustomerForm getCustomers={this.props.getCustomers} setModal={this.setModal} />
+                        <h2>Create new new training</h2>
+                        <TrainingForm getTraining={this.props.getTraining} setModal={this.setModal}/>
                     </div>
                 </Modal>
             </div>
@@ -48,5 +48,4 @@ class NewCustomer extends React.Component {
     }
 }
 
-Modal.setAppElement('#root')
-export default NewCustomer
+export default NewTraining

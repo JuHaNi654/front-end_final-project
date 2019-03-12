@@ -42,17 +42,12 @@ class Customer extends Component {
 
     render() {
         return (
-            <div className="testi">
-                <div className="container customer_container">
-                    <div className="customer_action_container">
-                        <NewCustomer getCustomers={this.getCustomers} />
-                        <CustomerList
-                            customers={this.state.customers}
-                            getCustomers={this.getCustomers} />
-                    </div>
-                </div>
-                <div className="new_customer_alert_container">
-
+            <div className="container customer_container">
+                <div className="customer_action_container">
+                    <NewCustomer getCustomers={this.getCustomers} />
+                    <CustomerList
+                        customers={this.state.customers}
+                        getCustomers={this.getCustomers} />
                 </div>
             </div>
         )

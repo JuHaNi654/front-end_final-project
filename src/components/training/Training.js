@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TrainingList from './TrainingList';
 import { getTraining } from '../ServerCalls.js'
+import NewTraining from './NewTraining';
 
 class Training extends Component {
     constructor(props) {
@@ -11,6 +12,10 @@ class Training extends Component {
     }
 
     componentDidMount() {
+        this.getTraining()
+    }
+
+    getTraining = () => {
         getTraining()
             .then(response => {
                 this.setState({
@@ -22,9 +27,12 @@ class Training extends Component {
             })
     }
     render() {
-        return(
+        return (
             <div className="container training_container">
-                <TrainingList training={this.state.trainingList}/>
+                <div className="training_action_container">
+                    <NewTraining getTraining={this.getTraining}/>
+                    <TrainingList training={this.state.trainingList} getTraining={this.getTraining}/>
+                </div>
             </div>
         )
     }

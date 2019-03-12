@@ -126,12 +126,4 @@
     text-shadow: 0 0 20px #fff, 0 0 30px greenyellow, 0 0 40px greenyellow, 0 0 50px greenyellow;
 }
 
-.new_customer_alert_container {
-
-    height: 200px;
-    width: 200px;
-    position: relative;
-    left: 75px;
-    top: -600px;
-}
 

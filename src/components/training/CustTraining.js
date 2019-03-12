@@ -5,7 +5,11 @@ import './Training.css';
 
 
 const CustTraining = (props) => {
-    let testi = [props.testi]
+    let enrolledCustomers
+    if (props.enrolledCustomers !== null) {
+        enrolledCustomers = [props.enrolledCustomers]
+    }
+
     const columns = [{
         Header: 'Enrolled Customers',
         columns: [
@@ -21,7 +25,7 @@ const CustTraining = (props) => {
     }]
     return (
         <div className="container CustTraining_styles">
-            <ReactTable data={testi} columns={columns}
+            <ReactTable data={enrolledCustomers} columns={columns}
                 sortable={true} minRows={3} 
                 showPaginationBottom={false}/>
         </div>

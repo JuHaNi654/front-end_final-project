@@ -6,6 +6,12 @@ import Main from './components/main/Main';
 import Customer from './components/customer/Customer';
 import Training from './components/training/Training';
 
+
+/**
+|--------------------------------------------------
+| Setting up router settings
+|--------------------------------------------------
+*/
 class App extends Component {
   render() {
     return (

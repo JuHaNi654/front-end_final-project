@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import TrainingList from './TrainingList';
-import { getTraining } from '../ServerCalls.js'
-import NewTraining from './NewTraining';
+import { getTraining } from '../ServerCalls.js';
+import moment from 'moment';
+import './Training.css';
 
 class Training extends Component {
     constructor(props) {
@@ -10,16 +11,28 @@ class Training extends Component {
             trainingList: []
         }
     }
-
+    /**
+    |--------------------------------------------------
+    | Call functions before rendering
+    |--------------------------------------------------
+    */
     componentDidMount() {
         this.getTraining()
     }
 
+    /**
+    |--------------------------------------------------
+    | Get listed trainings api call
+    | and format date from listed training
+    |--------------------------------------------------
+    */
     getTraining = () => {
         getTraining()
             .then(response => {
+                let data = response.data
+                data.forEach(training => training.date = moment(training.date).format("YYYY/MM/DD"))
                 this.setState({
-                    trainingList: response.data
+                    trainingList: data
                 })
             })
             .catch(err => {
@@ -29,10 +42,7 @@ class Training extends Component {
     render() {
         return (
             <div className="container training_container">
-                <div className="training_action_container">
-                    <NewTraining getTraining={this.getTraining}/>
-                    <TrainingList training={this.state.trainingList} getTraining={this.getTraining}/>
-                </div>
+                <TrainingList training={this.state.trainingList} getTraining={this.getTraining}/>
             </div>
         )
     }

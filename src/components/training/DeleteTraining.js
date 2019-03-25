@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
-import { deleteTraining } from '../ServerCalls'
+import React, { Component } from 'react';
+import { deleteTraining } from '../ServerCalls';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import './Training.css';
 
 export class DeleteTraining extends Component {
     constructor(props) {
@@ -14,12 +15,24 @@ export class DeleteTraining extends Component {
         }
     }
 
+    /**
+    |--------------------------------------------------
+    | When delete button is clicked on training list
+    | calls this function and show alert confirm pop-up
+    |--------------------------------------------------
+    */
     alertConfirm = () => {
         this.setState(prevState => {
             return { confirm: !prevState.confirm }
         })
     }
 
+    /**
+    |--------------------------------------------------
+    | By confirming delete alert, then delete training
+    | api is called and removes training from database
+    |--------------------------------------------------
+    */
     deleteTraining = () => {
         deleteTraining(this.props.trainingId)
             .then(response => {

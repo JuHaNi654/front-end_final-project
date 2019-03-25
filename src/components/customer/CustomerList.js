@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactTable from 'react-table';
-import 'react-table/react-table.css'
+import 'react-table/react-table.css';
 import DeleteCustomer from './DeleteCustomer';
-
+import NewTraining from '../training/NewTraining';
+import './Customer.css';
 
 class CustomerList extends React.Component {
     constructor(props) {
@@ -18,13 +19,25 @@ class CustomerList extends React.Component {
             showInput: false
         }
     }
+
+    /**
+    |--------------------------------------------------
+    | Set state by given input data
+    |--------------------------------------------------
+    */
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
-        }, () => this.filterCustomers())
+        })
     }
 
-
+    /**
+    |--------------------------------------------------
+    | Filtering customers function filters customer
+    | list if there are data in the filter input fields.
+    | If there is not it returns full customer list
+    |--------------------------------------------------
+    */
     filterCustomers = () => {
         let newFilter = this.props.customers
         if (this.state.firstname.length !== 0) {
@@ -67,12 +80,21 @@ class CustomerList extends React.Component {
     }
 
 
+    /**
+    |--------------------------------------------------
+    | Open/Close filtering input boxes
+    |--------------------------------------------------
+    */
     chanceInput = () => {
         this.setState(prevState => {
             return { showInput: !prevState.showInput }
         })
     }
-
+    /**
+    |--------------------------------------------------
+    | Clears filtering input boxes
+    |--------------------------------------------------
+    */
     clearInput = () => {
         this.setState({
             firstname: '',
@@ -87,6 +109,12 @@ class CustomerList extends React.Component {
 
 
     render() {
+        /**
+        |--------------------------------------------------
+        | React-table columns setting, wich is specifed
+        | what data is showed in table
+        |--------------------------------------------------
+        */
         const columns = [{
             Header: 'Customers',
             columns: [{
@@ -113,7 +141,15 @@ class CustomerList extends React.Component {
             }, {
                 Cell: ({ original }) => {
                     return (
-                        <DeleteCustomer deleteCustomerLink={original.links[0].href} getCustomers={this.props.getCustomers} />
+                        <DeleteCustomer 
+                            deleteCustomerLink={original.links[0].href} 
+                            getCustomers={this.props.getCustomers} />
+                    )
+                }
+            }, {
+                Cell: ({ original }) => {
+                    return (
+                        <NewTraining customerData={original.links[0].href} />
                     )
                 }
             }]

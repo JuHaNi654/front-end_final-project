@@ -1,6 +1,6 @@
 import React from 'react';
-import { saveCustomer } from '../ServerCalls.js'
-
+import { saveCustomer } from '../ServerCalls.js';
+import './Customer.css';
 
 class CustomerForm extends React.Component {
     constructor(props) {
@@ -15,17 +15,28 @@ class CustomerForm extends React.Component {
             postcode: ''
         }
     }
-    //Set states given input data
+    /**
+    |--------------------------------------------------
+    | Set state by given input data
+    |--------------------------------------------------
+    */
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
-
-    //On submit sen new data object to the server and closes new customer window 
+    /**
+    |--------------------------------------------------
+    | On submit saves new listed customer
+    |--------------------------------------------------
+    */
     handeSubmit = (event) => {
         event.preventDefault()
-
+        /**
+        |--------------------------------------------------
+        | Creates new customer object
+        |--------------------------------------------------
+        */
         const newCustomer = {
             firstname: this.state.firstname,
             lastname: this.state.lastname,
@@ -35,7 +46,13 @@ class CustomerForm extends React.Component {
             email: this.state.email,
             phone: this.state.phone
         }
-
+        /**
+        |--------------------------------------------------
+        | Post api call to save new customers and 
+        | callbacks get customer api to get updated customers
+        | and closes customer from window
+        |--------------------------------------------------
+        */
         saveCustomer(newCustomer)
             .then(response => {
                 this.props.getCustomers()

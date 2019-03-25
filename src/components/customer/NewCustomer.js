@@ -1,7 +1,12 @@
 import React from 'react';
-import Modal from 'react-modal'
+import Modal from 'react-modal';
 import CustomerForm from './CustomerForm';
-
+import './Customer.css';
+/**
+|--------------------------------------------------
+| Pop-up Modal window style settings
+|--------------------------------------------------
+*/
 const customStyles = {
     content: {
         width: '60%',
@@ -23,6 +28,11 @@ class NewCustomer extends React.Component {
             modalIsOpen: false
         }
     }
+    /**
+    |--------------------------------------------------
+    | Opens new customer format window
+    |--------------------------------------------------
+    */
     setModal = () => {
         this.setState(prevState => {
             return {modalIsOpen: !prevState.modalIsOpen}

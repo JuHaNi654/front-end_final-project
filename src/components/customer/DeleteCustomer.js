@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
-import { deleteCustomer } from '../ServerCalls.js'
+import './Customer.css';
+import { deleteCustomer } from '../ServerCalls.js';
 
 class DeleteCustomer extends React.Component {
     constructor(props) {
@@ -15,12 +15,25 @@ class DeleteCustomer extends React.Component {
         }
     }
 
+    /**
+    |--------------------------------------------------
+    | When delete button is clicked on customer list
+    | calls this function and show alert confirm window
+    |--------------------------------------------------
+    */
     alertConfirm = () => {
         this.setState(prevState => {
             return { confirm: !prevState.confirm }
         })
     }
 
+    /**
+    |--------------------------------------------------
+    | By confirming delete customer alert, then function
+    | makes delete api call and removes customer from
+    | the database
+    |--------------------------------------------------
+    */
     deleteCustomer = () => {
         deleteCustomer(this.props.deleteCustomerLink)
             .then(response => {

@@ -1,7 +1,13 @@
-import React, { Component } from 'react'
-import Modal from 'react-modal'
+import React, { Component } from 'react';
+import Modal from 'react-modal';
 import TrainingForm from './TrainingForm';
+import './Training.css';
 
+/**
+|--------------------------------------------------
+| Pop-up Modal window style settings
+|--------------------------------------------------
+*/
 const customStyles = {
     content: {
         width: '60%',
@@ -22,6 +28,11 @@ export class NewTraining extends Component {
             modalIsOpen: false
         }
     }
+    /**
+    |--------------------------------------------------
+    | Opens new customer format window
+    |--------------------------------------------------
+    */
     setModal = () => {
         this.setState(prevState => {
             return { modalIsOpen: !prevState.modalIsOpen }
@@ -31,16 +42,16 @@ export class NewTraining extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.setModal} className="btn newTraining_button">Create new training activity</button>
+                <button onClick={this.setModal} className="btn newTraining_button">New Activity</button>
                 <Modal
                     isOpen={this.state.modalIsOpen}
-                    onRequestClose={this.closeModal}
+                    onRequestClose={this.setModal}
                     style={customStyles} >
 
                     <div className="Modal_style">
                         <button className="btn close_button" onClick={this.setModal}>X</button>
-                        <h2>Create new new training</h2>
-                        <TrainingForm getTraining={this.props.getTraining} setModal={this.setModal}/>
+                        <h2>Create new training to the customer</h2>
+                        <TrainingForm customerData={this.props.customerData} setModal={this.setModal}/>
                     </div>
                 </Modal>
             </div>

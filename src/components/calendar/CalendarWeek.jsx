@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import dateFns from "date-fns"
-
+import './Calendar.css'
+import CalendarPopUp from './CalendarPopUp';
 export class CalendarWeek extends Component {
     constructor(props) {
         super(props)
@@ -46,6 +47,23 @@ export class CalendarWeek extends Component {
         return <div className="days row">{days}</div>
     }
 
+    renderPopUpWindow = (date) => {
+        let activities = this.props.trainingList
+        let day = dateFns.format(date, 'YYYY/MM/DD')
+        day = day.split('/')
+        activities = activities.filter(training => {
+            let dateValue = training.date.split("/")
+            return day[0] === dateValue[0] && day[1] === dateValue[1] && day[2] === dateValue[2]
+          })
+        if (activities.length !== 0) {
+            return (
+                <span className="pb_button">
+                    <CalendarPopUp activities={activities}/>
+                </span>
+            )
+        }
+    }
+
 
     renderCells = () => {
         const weekStart = dateFns.startOfWeek(this.state.currentWeek, { weekStartsOn: 1 })
@@ -67,6 +85,7 @@ export class CalendarWeek extends Component {
                         onClick={() => this.onDateClick(dateFns.parse(cloneDay))}>
                         <span className="number">{formattedDate}</span>
                         <span className="bg">{formattedDate}</span>
+                        {this.renderPopUpWindow(cloneDay)}
                     </div>
                 )
                 day = dateFns.addDays(day, 1)

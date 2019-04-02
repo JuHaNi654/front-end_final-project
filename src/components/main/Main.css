@@ -4,4 +4,5 @@
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px lime, 0 0 40px lime;
+    min-height: 400px;
 }

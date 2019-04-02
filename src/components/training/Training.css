@@ -101,3 +101,12 @@
     color: yellow;
     text-shadow: 0 0 20px #fff, 0 0 30px greenyellow, 0 0 40px greenyellow, 0 0 50px greenyellow;
 }
+.Modal_style h2 {
+    text-align: center;
+}
+.Modal_style {
+    height: 100%;
+    font-family: 'Lilita One', cursive;
+    padding: 30px;
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px blue, 0 0 40px blue;
+}

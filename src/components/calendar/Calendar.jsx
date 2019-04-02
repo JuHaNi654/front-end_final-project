@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import './Calendar.css'
+import React, { PureComponent } from 'react'
+
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -8,6 +8,9 @@ import Select from '@material-ui/core/Select';
 import CalendarMonth from './CalendarMonth';
 import CalendarWeek from './CalendarWeek';
 import CalendarDay from './CalendarDay';
+
+import { getTraining } from '../ServerCalls.js';
+import moment from 'moment';
 
 const styles = theme => ({
     button: {
@@ -23,18 +26,37 @@ const styles = theme => ({
 /**
 |--------------------------------------------------
 | https://blog.flowandform.agency/create-a-custom-calendar-in-react-3df1bfd0b728
-| calendar componend is original from this tutorial
+| calendar component original source is based from this tutorial
 |--------------------------------------------------
 */
 
-export class Calendar extends Component {
+export class Calendar extends PureComponent {
     constructor(props) {
         super(props)
         this.state = {
             selected: 1,
-            open: false
+            open: false,
+            trainingList: []
         }
     }
+
+
+    componentDidMount() {
+        getTraining()
+            .then(response => {
+                let data = response.data
+                data.forEach(training => training.date = moment(training.date).format("YYYY/MM/DD"))
+                this.setState({
+                    trainingList: data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+
+
     handleChange = (event) => {
         this.setState({ selected: event.target.value });
     };
@@ -50,11 +72,11 @@ export class Calendar extends Component {
     renderCalendar = () => {
         switch(this.state.selected) {
             case 1:
-                return (<div><CalendarMonth /></div>)
+                return (<div><CalendarMonth trainingList={this.state.trainingList}/></div>)
             case 2:
-                return (<div><CalendarWeek /></div>)
+                return (<div><CalendarWeek trainingList={this.state.trainingList}/></div>)
             case 3:
-                return (<div><CalendarDay /></div>)
+                return (<div><CalendarDay trainingList={this.state.trainingList} /></div>)
             default:
             
         }
@@ -83,7 +105,9 @@ export class Calendar extends Component {
                         </Select>
                     </FormControl>
                 </form>
-                {this.renderCalendar()}
+                <div>
+                    {this.renderCalendar()}
+                </div>
             </div>
         )
     }

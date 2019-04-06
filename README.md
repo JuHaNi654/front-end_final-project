@@ -1,5 +1,5 @@
 # Frond-End course project assignment
-Assignment was to make front-end project with React framework.
+Assignment was to make front-end project with React library.
 
 ## Home page component
 Home page component wich opens first when start project. In home page we have calendar component wich shows listed training schedule. When clicked activity button opens pop-up window and shows listed trainings on that day.

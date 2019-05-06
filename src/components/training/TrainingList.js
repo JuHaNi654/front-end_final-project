@@ -10,7 +10,7 @@ export class TrainingList extends React.Component {
         this.state = {
             showInput: false,
             date: '',
-            duration: '',
+            duration: 0,
             activity: '',
             firstname: '',
             lastname: ''
@@ -53,8 +53,10 @@ export class TrainingList extends React.Component {
         }
 
         if (this.state.duration > 0) {
+            let time = parseInt(this.state.duration)
             newFilter = newFilter.filter(training => {
-                return training.duration === this.state.duration
+                let reservedTime = parseInt(training.duration)
+                return reservedTime === time
             })
         }
 
@@ -144,7 +146,7 @@ export class TrainingList extends React.Component {
                     data-toggle="collapse" data-target="#searchBox">
                     {this.state.showInput ? 'Close search' : 'Open Search'}
                 </button>
-                <div id="searchBox" className="collapse">
+                <div id="searchBox" className="collapse form_container">
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-row">
                             <div className="form-group col-md-3">
@@ -154,7 +156,7 @@ export class TrainingList extends React.Component {
                             </div>
                             <div className="form-group col-md-3">
                                 <label htmlFor="time">Duration in minutes</label>
-                                <input type="text" className="form-control" id="time"
+                                <input type="number" className="form-control" id="time"
                                     name="duration" value={this.state.duration} onChange={this.handleChange} />
                             </div>
 

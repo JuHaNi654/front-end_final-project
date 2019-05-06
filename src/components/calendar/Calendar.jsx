@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -12,6 +12,11 @@ import CalendarDay from './CalendarDay';
 import { getTraining } from '../ServerCalls.js';
 import moment from 'moment';
 
+/**
+|--------------------------------------------------
+| Material-ui selector styles
+|--------------------------------------------------
+*/
 const styles = theme => ({
     button: {
         display: 'block',
@@ -30,7 +35,9 @@ const styles = theme => ({
 |--------------------------------------------------
 */
 
-export class Calendar extends PureComponent {
+export class Calendar extends Component {
+    _isMounted = false
+
     constructor(props) {
         super(props)
         this.state = {
@@ -40,23 +47,43 @@ export class Calendar extends PureComponent {
         }
     }
 
-
+    /**
+    |--------------------------------------------------
+    | Fetch listed trainings from database
+    |--------------------------------------------------
+    */
     componentDidMount() {
+        this._isMounted = true
+        
         getTraining()
             .then(response => {
-                let data = response.data
-                data.forEach(training => training.date = moment(training.date).format("YYYY/MM/DD"))
-                this.setState({
-                    trainingList: data
-                })
+                if (this._isMounted) {
+                    let data = response.data
+                    data.forEach(training => training.date = moment(training.date).format("YYYY/MM/DD"))
+                    this.setState({
+                        trainingList: data
+                    })
+                }
             })
             .catch(err => {
                 console.log(err)
             })
     }
 
+    /**
+    |--------------------------------------------------
+    | componentWillUnmount is initialized, to remove memory leark warning message
+    |--------------------------------------------------
+    */
+    componentWillUnmount() {
+        this._isMounted = false
+    }
 
-
+    /**
+    |--------------------------------------------------
+    | material-ui Selector functions
+    |--------------------------------------------------
+    */
     handleChange = (event) => {
         this.setState({ selected: event.target.value });
     };
@@ -69,6 +96,11 @@ export class Calendar extends PureComponent {
         this.setState({ open: true });
     };
 
+    /**
+    |--------------------------------------------------
+    | Switch case rendering calendar component
+    |--------------------------------------------------
+    */
     renderCalendar = () => {
         switch(this.state.selected) {
             case 1:

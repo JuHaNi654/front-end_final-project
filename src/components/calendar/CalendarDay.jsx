@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import dateFns from "date-fns"
 import './CalendarDay.css'
+
 export class CalendarDay extends Component {
   constructor(props) {
     super(props)
@@ -10,6 +11,12 @@ export class CalendarDay extends Component {
     }
   }
 
+  /**
+  |--------------------------------------------------
+  | Calendar header function component, wich renders
+  | calendar month and year
+  |--------------------------------------------------
+  */
   renderHeader = () => {
     return (
       <div className="header row flex-middle">
@@ -30,6 +37,11 @@ export class CalendarDay extends Component {
     )
   }
 
+  /**
+  |--------------------------------------------------
+  | renderDay function renders weekday text
+  |--------------------------------------------------
+  */
   renderDay = () => {
     return (
       <div className="days">
@@ -40,12 +52,16 @@ export class CalendarDay extends Component {
     )
   }
 
+  /**
+  |--------------------------------------------------
+  | Function renders selected day number
+  |--------------------------------------------------
+  */
   renderCell = () => {
     let formattedDate = dateFns.format(this.state.selectedDate, "D")
     return (
       <div className="body col-center">
-        <div className={`col cell selected`}
-          onClick={() => this.onDateClick(dateFns.parse(this.state.selectedDate))}>
+        <div className={`col cell selected`}>
           <span className="number">{formattedDate}</span>
           <span className="bg">{formattedDate}</span>
         </div>
@@ -53,12 +69,11 @@ export class CalendarDay extends Component {
     )
   }
 
-  onDateClick = (day) => {
-    this.setState({
-      selectedDate: day
-    })
-  }
-
+  /**
+  |--------------------------------------------------
+  | Function call goes next day
+  |--------------------------------------------------
+  */
   nextDay = () => {
     let getMonth = dateFns.format(dateFns.addDays(this.state.selectedDate, 1), 'M')
     let getCurrentMonth = dateFns.format(this.state.currentMonth, 'M')
@@ -72,7 +87,11 @@ export class CalendarDay extends Component {
       selectedDate: dateFns.addDays(this.state.selectedDate, 1)
     })
   }
-
+  /**
+  |--------------------------------------------------
+  | Function call goes previous day
+  |--------------------------------------------------
+  */
   prevDay = () => {
     let getMonth = dateFns.format(dateFns.subDays(this.state.selectedDate, 1), 'M')
     let getCurrentMonth = dateFns.format(this.state.currentMonth, 'M')
@@ -85,7 +104,12 @@ export class CalendarDay extends Component {
       selectedDate: dateFns.subDays(this.state.selectedDate, 1)
     })
   }
-
+  /**
+  |--------------------------------------------------
+  | Render selected day training activities if
+  | there is any on selected day
+  |--------------------------------------------------
+  */
   renderDailyTask = () => {
     let nowDayActivities = this.props.trainingList
     let day = dateFns.format(this.state.selectedDate, 'YYYY/MM/DD')
@@ -107,7 +131,7 @@ export class CalendarDay extends Component {
     if (nowDayActivities.length === 0) {
       return (
         <div>
-          No trainings booked for this day
+          No trainings booked at selected date
         </div>
       )
     } else {

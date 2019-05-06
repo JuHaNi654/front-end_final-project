@@ -17,6 +17,7 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
+        padding: 0
     }
 };
 
@@ -28,6 +29,11 @@ export class CalendarPopUp extends Component {
         }
     }
 
+    /**
+    |--------------------------------------------------
+    | Opens/closes modal
+    |--------------------------------------------------
+    */
     setModal = () => {
         this.setState(prevState => {
             return { modalIsOpen: !prevState.modalIsOpen }
@@ -46,8 +52,8 @@ export class CalendarPopUp extends Component {
             )
           })
         return (
-            <div> 
-                <span onClick={this.setModal}>Training: {this.props.activities.length}</span>
+            <div > 
+                <span className="list_button_style" onClick={this.setModal}>Activities: {this.props.activities.length}</span>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onRequestClose={this.setModal}

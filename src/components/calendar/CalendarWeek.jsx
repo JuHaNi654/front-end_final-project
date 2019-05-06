@@ -11,7 +11,12 @@ export class CalendarWeek extends Component {
             currentWeek: new Date()
         }
     }
-
+    /**
+     |--------------------------------------------------
+    | Calendar header function component, wich renders
+    | calendar month and year
+    |--------------------------------------------------
+    */
     renderHeader = () => {
         return (
             <div className="header row flex-middle">
@@ -32,6 +37,11 @@ export class CalendarWeek extends Component {
         )
     }
 
+    /**
+    |--------------------------------------------------
+    | Renders weekdays text
+    |--------------------------------------------------
+    */
     renderDays = () => {
         const days = []
         let startDate = dateFns.startOfWeek(this.state.currentMonth);
@@ -47,6 +57,11 @@ export class CalendarWeek extends Component {
         return <div className="days row">{days}</div>
     }
 
+    /**
+    |--------------------------------------------------
+    | Pop-up window shows current date activities
+    |--------------------------------------------------
+    */
     renderPopUpWindow = (date) => {
         let activities = this.props.trainingList
         let day = dateFns.format(date, 'YYYY/MM/DD')
@@ -64,7 +79,11 @@ export class CalendarWeek extends Component {
         }
     }
 
-
+    /**
+    |--------------------------------------------------
+    | Renders current days the whole week
+    |--------------------------------------------------
+    */
     renderCells = () => {
         const weekStart = dateFns.startOfWeek(this.state.currentWeek, { weekStartsOn: 1 })
         const weekEnd = dateFns.endOfWeek(weekStart)
@@ -106,6 +125,11 @@ export class CalendarWeek extends Component {
         })
     }
 
+    /**
+    |--------------------------------------------------
+    | Goes next week
+    |--------------------------------------------------
+    */
     nextWeek = () => {
         let getMonth = dateFns.format(dateFns.addWeeks(this.state.currentWeek, 1), 'M')
         let getCurrentMonth = dateFns.format(this.state.currentMonth, 'M')
@@ -118,7 +142,11 @@ export class CalendarWeek extends Component {
             currentWeek: dateFns.addWeeks(this.state.currentWeek, 1)
         })
     }
-
+    /**
+    |--------------------------------------------------
+    | Goes previous week
+    |--------------------------------------------------
+    */
     prevWeek = () => {
         let getMonth = dateFns.format(dateFns.subWeeks(this.state.currentWeek, 1), 'M')
         let getCurrentMonth = dateFns.format(this.state.currentMonth, 'M')

@@ -11,7 +11,12 @@ export class CalendarMonth extends PureComponent {
             selectedDate: new Date()
         }
     }
-
+    /**
+     |--------------------------------------------------
+     | Calendar header function component, wich renders
+     | calendar month and year
+     |--------------------------------------------------
+     */
     renderHeader = () => {
         return (
             <div className="header row flex-middle">
@@ -22,7 +27,7 @@ export class CalendarMonth extends PureComponent {
                 </div>
                 <div className="col col-center">
                     <span>
-                    {dateFns.format(this.state.currentMonth, "MMMM YYYY")}
+                        {dateFns.format(this.state.currentMonth, "MMMM YYYY")}
                     </span>
                 </div>
                 <div className="col col-end" onClick={this.nextMonth}>
@@ -31,7 +36,11 @@ export class CalendarMonth extends PureComponent {
             </div>
         )
     }
-
+    /**
+    |--------------------------------------------------
+    | Function renders weekdays text
+    |--------------------------------------------------
+    */
     renderDays = () => {
         const days = []
         let startDate = dateFns.startOfWeek(this.state.currentMonth);
@@ -46,7 +55,11 @@ export class CalendarMonth extends PureComponent {
 
         return <div className="days row">{days}</div>
     }
-
+    /**
+    |--------------------------------------------------
+    | Function opens popup window and shows listed trainings on selected day
+    |--------------------------------------------------
+    */
     renderPopUpWindow = (date) => {
         let activities = this.props.trainingList
         let day = dateFns.format(date, 'YYYY/MM/DD')
@@ -54,16 +67,20 @@ export class CalendarMonth extends PureComponent {
         activities = activities.filter(training => {
             let dateValue = training.date.split("/")
             return day[0] === dateValue[0] && day[1] === dateValue[1] && day[2] === dateValue[2]
-          })
+        })
         if (activities.length !== 0) {
             return (
                 <span className="pb_button">
-                    <CalendarPopUp activities={activities}/>
+                    <CalendarPopUp activities={activities} />
                 </span>
             )
         }
     }
-
+    /**
+    |--------------------------------------------------
+    | Render days in numbers
+    |--------------------------------------------------
+    */
     renderCells = () => {
         const monthStart = dateFns.startOfMonth(this.state.currentMonth)
         const monthEnd = dateFns.endOfMonth(monthStart)
@@ -101,19 +118,28 @@ export class CalendarMonth extends PureComponent {
 
         return <div className="body">{rows}</div>
     }
-
+    
     onDateClick = (day) => {
         this.setState({
             selectedDate: day
         })
     }
 
+    /**
+    |--------------------------------------------------
+    | Goes next month
+    |--------------------------------------------------
+    */
     nextMonth = () => {
         this.setState({
             currentMonth: dateFns.addMonths(this.state.currentMonth, 1)
         })
     }
-
+    /**
+    |--------------------------------------------------
+    | Goes previous month
+    |--------------------------------------------------
+    */
     prevMonth = () => {
         this.setState({
             currentMonth: dateFns.subMonths(this.state.currentMonth, 1)

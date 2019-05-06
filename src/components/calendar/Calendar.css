@@ -181,13 +181,14 @@ header {
   opacity: 0.05;
   transition: .5s ease-in;
 }
+
 .calendar .body .cell .pb_button {
     position: absolute;
     top: 2.5em;
     left: .75em;
     height: 30px;
     width: 100px;
-    background-color: red;
+    border: 2px solid red;
     font-family: 'Lilita One', cursive;
     border-radius: 4%;
     font-size: 1em;

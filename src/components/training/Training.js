@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import TrainingList from './TrainingList';
 import { getTraining } from '../ServerCalls.js';
 import moment from 'moment';
 import './Training.css';
 
-class Training extends Component {
+class Training extends PureComponent {
     constructor(props) {
         super(props)
         this.state = {

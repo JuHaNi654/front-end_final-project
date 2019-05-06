@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import CustomerList from './CustomerList';
 import './Customer.css';
 import NewCustomer from './NewCustomer';
 import { getCustomers } from '../ServerCalls.js';
 
 
-class Customer extends Component {
+class Customer extends PureComponent {
     constructor(props) {
         super(props)
         this.state = {
